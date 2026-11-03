@@ -1,0 +1,568 @@
+/* ========================================
+   BASIC RESET
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Roboto Serif", serif;
+    color: #707070;
+    background: #fff;
+}
+
+
+/* ========================================
+   OVERALL PAGE GRID
+======================================== */
+
+.page {
+    display: grid;
+    grid-template-columns: 100px minmax(0, 1fr);
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* ========================================
+   SECTION NAVIGATION
+======================================== */
+
+.section-nav {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    padding: 45px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+
+    border: none;
+    background: white;
+    z-index: 10;
+}
+
+
+/* NUMBERED CIRCLES */
+
+.section-marker {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    border: 1px solid #111;
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #111;
+    text-decoration: none;
+    font-size: 13px;
+
+    transition:
+        background-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.section-marker:hover {
+    background: #111;
+    color: white;
+}
+
+
+/* ACTIVE NAVIGATION CIRCLE */
+
+.section-marker.active {
+    background: #111;
+    color: white;
+}
+
+
+/* HOME CIRCLE */
+
+.home-marker {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 10px;
+}
+
+.home-marker span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #111;
+    transition: background-color 0.25s ease;
+}
+
+.home-marker:hover span {
+    background: white;
+}
+
+
+/* ACTIVE HOME BUTTON */
+
+.home-marker.active {
+    background: #111;
+}
+
+.home-marker.active span {
+    background: white;
+}
+
+
+/* CITATIONS CIRCLE */
+
+.citations-marker {
+    width: 22px;
+    height: 22px;
+    margin-top: 10px;
+
+    font-family: "Roboto Serif", serif;
+    font-size: 12px;
+}
+
+
+/* ========================================
+   ARTICLE
+======================================== */
+
+.article {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+
+    padding: 60px 6vw 150px;
+}
+
+
+/* ========================================
+   ARTICLE HEADER
+======================================== */
+
+.article-header {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto 120px;
+}
+
+.article-header h1 {
+    width: 80%;
+    max-width: 80%;
+
+    margin: 0 auto 20px;
+
+    font-family: "Roboto Serif", serif;
+    font-size: clamp(36px, 5vw, 80px);
+
+    color: #0b0b0b;
+    line-height: 1;
+    font-weight: 100;
+}
+
+.article-header p {
+    width: 80%;
+    max-width: 80%;
+
+    margin: 0 auto;
+
+    font-size: 20px;
+    line-height: 1.5;
+
+    overflow-wrap: break-word;
+}
+
+
+/* ========================================
+   ARTICLE SECTIONS
+======================================== */
+
+.article-section {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto 180px;
+
+    scroll-margin-top: 40px;
+
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.article-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.article-section h2 {
+    width: 80%;
+    max-width: 80%;
+
+    margin: 0 auto 30px;
+
+    font-size: 42px;
+    line-height: 1;
+    font-weight: 400;
+
+    color: #0d0e0d;
+}
+
+.article-section p {
+    width: 80%;
+    max-width: 80%;
+
+    margin: 0 auto 24px;
+
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+/* ========================================
+   LINKS
+======================================== */
+
+.article a {
+    color: inherit;
+}
+
+.article a:hover {
+    color: #777;
+}
+
+
+/* ========================================
+   IMAGES
+======================================== */
+
+.article-image {
+    display: block;
+
+    width: 80%;
+    max-width: 80%;
+
+    height: auto;
+
+    margin: 25px auto;
+
+    opacity: 0.2;
+
+    transition: opacity 0.5s ease;
+}
+
+/* Images brighten on hover and stay bright afterward */
+
+.article-image:hover,
+.article-image.revealed {
+    opacity: 0.8 !important;
+}
+
+
+/* ========================================
+   IMAGE FIGURES
+======================================== */
+
+.article-figure {
+    width: 80%;
+    max-width: 80%;
+
+    margin: 30px auto;
+}
+
+.article-figure .article-image {
+    display: block;
+
+    width: 100%;
+    max-width: 100%;
+
+    height: auto;
+
+    margin: 25px auto;
+}
+
+.article-figure figcaption {
+    width: 100%;
+
+    margin: 8px auto 0;
+
+    font-size: 0.8rem;
+    line-height: 1.4;
+
+    color: #777;
+    font-style: italic;
+    text-align: left;
+}
+
+
+/* ========================================
+   SMALL GRID
+======================================== */
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    border-top: 1px solid #111;
+    border-left: 1px solid #111;
+
+    margin: 50px auto;
+
+    width: 80%;
+}
+
+.info-grid div {
+    padding: 15px;
+
+    border-right: 1px solid #111;
+    border-bottom: 1px solid #111;
+}
+
+
+/* ========================================
+   P5 CANVAS
+======================================== */
+
+canvas {
+    position: fixed !important;
+
+    top: 0;
+    left: 0;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 1000px) {
+
+    .article {
+        padding: 50px 5vw 120px;
+    }
+
+    .article-header,
+    .article-section {
+        max-width: 800px;
+    }
+
+}
+
+
+/* ========================================
+   SMALL TABLET
+======================================== */
+
+@media (max-width: 800px) {
+
+    .page {
+        grid-template-columns: 85px minmax(0, 1fr);
+    }
+
+    .section-nav {
+        padding: 35px 15px;
+        gap: 12px;
+    }
+
+    .section-marker {
+        width: 36px;
+        height: 36px;
+    }
+
+    .home-marker,
+    .citations-marker {
+        width: 20px;
+        height: 20px;
+    }
+
+    .article {
+        padding: 40px 30px 100px;
+    }
+
+    .article-header,
+    .article-section {
+        max-width: 100%;
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .page {
+        display: block;
+    }
+
+
+    /* NAVIGATION */
+
+    .section-nav {
+        position: sticky;
+        top: 0;
+
+        width: 100%;
+        height: auto;
+
+        flex-direction: row;
+        justify-content: flex-start;
+
+        overflow-x: auto;
+
+        padding: 14px 20px;
+        gap: 12px;
+
+        border: none;
+        z-index: 10;
+        background: white;
+    }
+
+    .section-marker {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
+        margin: 0;
+    }
+
+    .home-marker,
+    .citations-marker {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+    }
+
+
+    /* ARTICLE */
+
+    .article {
+        width: 100%;
+        padding: 40px 20px 100px;
+    }
+
+    .article-header {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 80px;
+    }
+
+    .article-header h1 {
+        width: 100%;
+        max-width: 100%;
+        font-size: 56px;
+    }
+
+    .article-header p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 18px;
+    }
+
+
+    /* SECTIONS */
+
+    .article-section {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 120px;
+    }
+
+    .article-section h2 {
+        width: 100%;
+        max-width: 100%;
+        font-size: 34px;
+    }
+
+    .article-section p {
+        width: 100%;
+        max-width: 100%;
+        font-size: 16px;
+    }
+
+
+    /* IMAGES */
+
+    .article-image {
+        width: 80%;
+        max-width: 80%;
+        margin: 25px auto;
+    }
+
+    .article-figure {
+        width: 100%;
+        max-width: 100%;
+        margin: 30px auto;
+    }
+
+    .article-figure .article-image {
+        width: 80%;
+        max-width: 80%;
+        margin: 25px auto;
+    }
+
+    .article-figure figcaption {
+        width: 80%;
+        margin: 8px auto 0;
+    }
+
+
+    /* SMALL GRID */
+
+    .info-grid {
+        width: 100%;
+    }
+
+
+    /* TOUCHSCREENS */
+
+    .article-image {
+        opacity: 0.8;
+    }
+
+}
+
+
+/* ========================================
+   REDUCED MOTION
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .article-section {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .article-image {
+        transition: none;
+    }
+
+}
